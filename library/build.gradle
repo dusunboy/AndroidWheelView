@@ -1,11 +1,15 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
+    }
+}
+
+apply from: 'https://raw.githubusercontent.com/msdx/gradle-publish/master/bintray.gradle'
 apply plugin: 'com.android.library'
-
-// 根节点添加
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-
-
-version = "1.0.0"                                                              // #CONFIG# // project version
 
 android {
     compileSdkVersion 22
@@ -28,76 +32,4 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
-}
-
-def siteUrl = 'https://github.com/dusunboy/AndroidWheelView'                        // #CONFIG# // project homepage
-def gitUrl = 'https://github.com/dusunboy/AndroidWheelView.git'                     // #CONFIG# // project git
-group = "com.github.dusunboy"                                                          // #CONFIG# // Maven Group ID for the artifact (pageckage name is ok)
-
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-                name 'AndroidWheelView'                                   // #CONFIG# // project title
-                url siteUrl
-                // Set your license
-                licenses {
-                    license {
-                        name 'The MIT License (MIT)'
-                        url 'http://opensource.org/licenses/MIT'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'Vincent_Du'                                           // #CONFIG# // your user id (you can write your nickname)
-                        name 'dusunboy'                                       // #CONFIG# // your user name
-                        email 'du_sunboy@qq.com'                               // #CONFIG# // your email
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
-}
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = "AndroidWheelView"                                                 // #CONFIG# project name in jcenter
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["MIT License"]
-        publish = true
-    }
 }
