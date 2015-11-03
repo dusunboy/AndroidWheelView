@@ -3,7 +3,7 @@
 
  感谢([ywl5320](http://blog.csdn.net/ywl5320/article/details/44730457))
 -------
-基于ywl5320的源码代码开发优化 
+基于ywl5320作者的源码代码开发优化 
 http://blog.csdn.net/ywl5320/article/details/44730457<br>
 
 ## License
