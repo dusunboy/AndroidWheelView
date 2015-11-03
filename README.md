@@ -1,5 +1,4 @@
 # AndroidWheelView
-AndroidWheelView
 =========
   更加随意组合的滚轮控件
 
