@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_birth"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_marginLeft="12dip"
+        android:layout_marginRight="12dip"
+        android:layout_marginTop="50dip"
+        android:background="@drawable/btn_blue_selector"
+        android:gravity="center"
+        android:text="选择时间" />
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_marginLeft="12dip"
+        android:layout_marginRight="12dip"
+        android:layout_marginTop="24dip"
+        android:background="@drawable/btn_blue_selector"
+        android:gravity="center"
+        android:text="选择地点"/>
+
+</LinearLayout>
