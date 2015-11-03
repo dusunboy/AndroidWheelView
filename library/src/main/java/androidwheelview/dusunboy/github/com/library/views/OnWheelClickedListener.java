@@ -20,8 +20,8 @@ package androidwheelview.dusunboy.github.com.library.views;
  * Wheel clicked listener interface.
  * <p>
  * The onItemClicked() method is called whenever a wheel item is clicked
- * <li>New Wheel position is set
- * <li>Wheel view is scrolled
+ * <p>New Wheel position is set
+ * <p>Wheel view is scrolled
  */
 public interface OnWheelClickedListener {
 	/**
