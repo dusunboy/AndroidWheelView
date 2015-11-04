@@ -37,8 +37,8 @@ javadoc {
 def pomConfig = {
     licenses {
         license {
-            name "The Apache Software License, Version 2.0"
-            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            name "The MIT License (MIT)"
+            url "http://opensource.org/licenses/MIT"
             distribution "repo"
         }
     }
@@ -88,7 +88,7 @@ bintray {
         websiteUrl = PROJ_WEBSITEURL
         issueTrackerUrl = PROJ_ISSUETRACKERURL
         vcsUrl = PROJ_VCSURL
-        licenses = ['Apache-2.0']
+        licenses = ['MIT']
         publicDownloadNumbers = true
     }
 }

@@ -8,7 +8,6 @@ buildscript {
     }
 }
 
-apply from: 'https://raw.githubusercontent.com/msdx/gradle-publish/master/bintray.gradle'
 apply plugin: 'com.android.library'
 
 android {
@@ -33,3 +32,4 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
 }
+apply from: 'https://raw.githubusercontent.com/dusunboy/AndroidWheelView/master/bintray.gradle'
