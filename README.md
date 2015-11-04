@@ -1,5 +1,14 @@
 # AndroidWheelView
   更加随意组合的滚轮控件
+## Download from Gradle
+
+```groovy
+
+dependencies {
+    compile 'com.github.dusunboy:androidwheelview-library:1.0.1'
+}
+
+```
 
  感谢([ywl5320](http://blog.csdn.net/ywl5320/article/details/44730457))
 -------
