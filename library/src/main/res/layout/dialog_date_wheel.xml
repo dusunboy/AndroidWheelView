@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/li"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/li_child"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <LinearLayout
+            android:id="@+id/li_wheel_view"
+            android:layout_width="match_parent"
+            android:layout_height="160dip"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
+                <!--android:id="@+id/wv_birth_year"-->
+                <!--android:layout_width="0dip"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_weight="1" />-->
+
+            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
+                <!--android:id="@+id/wv_birth_month"-->
+                <!--android:layout_width="0dip"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_weight="1" />-->
+
+            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
+                <!--android:id="@+id/wv_birth_day"-->
+                <!--android:layout_width="0dip"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_weight="1" />-->
+
+            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
+                <!--android:id="@+id/wv_birth_day1"-->
+                <!--android:layout_width="0dip"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_weight="1" />-->
+
+            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
+                <!--android:id="@+id/wv_birth_day2"-->
+                <!--android:layout_width="0dip"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_weight="1" />-->
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="21dip"
+            android:layout_marginTop="25dip">
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_width="77dip"
+                android:layout_height="33dip"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dip"
+                android:gravity="center"
+                android:text="@string/confirm"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="77dip"
+                android:layout_height="33dip"
+                android:layout_toLeftOf="@+id/tv_confirm"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

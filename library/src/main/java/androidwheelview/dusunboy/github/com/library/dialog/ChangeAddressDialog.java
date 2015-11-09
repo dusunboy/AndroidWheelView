@@ -56,7 +56,7 @@ public class ChangeAddressDialog extends Dialog implements View.OnClickListener 
 	private int minsize = 14;
 
 	public ChangeAddressDialog(Context context) {
-		super(context, R.style.ShareDialog);
+		super(context, R.style.DialogStyle);
 		this.context = context;
 	}
 

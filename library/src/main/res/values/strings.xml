@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
 </resources>

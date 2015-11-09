@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="27dip"
         android:layout_marginRight="27dip"
-        android:background="@drawable/bg_dialog_selector"
+        android:background="@drawable/dialog_bg"
         android:orientation="vertical" >
 
         <TextView

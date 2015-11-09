@@ -16,8 +16,9 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    <!-- 分享对话框样式 -->
-    <style name="ShareDialog" parent="android:Theme.Dialog">
+
+    <!-- 对话框样式 -->
+    <style name="DialogStyle" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>

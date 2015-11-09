@@ -60,7 +60,7 @@ public class ChangeBirthDialog extends Dialog implements View.OnClickListener {
 	private OnBirthListener onBirthListener;
 
 	public ChangeBirthDialog(Context context) {
-		super(context, R.style.ShareDialog);
+		super(context, R.style.DialogStyle);
 		this.context = context;
 	}
 
