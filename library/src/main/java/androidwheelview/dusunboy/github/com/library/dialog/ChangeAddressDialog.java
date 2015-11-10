@@ -52,8 +52,8 @@ public class ChangeAddressDialog extends Dialog implements View.OnClickListener 
 	private String strCity = "成都";
 	private OnAddressCListener onAddressCListener;
 
-	private int maxsize = 24;
-	private int minsize = 14;
+	private int maxsize = 28;
+	private int minsize = 12;
 
 	public ChangeAddressDialog(Context context) {
 		super(context, R.style.DialogStyle);
@@ -150,9 +150,9 @@ public class ChangeAddressDialog extends Dialog implements View.OnClickListener 
 		ArrayList<String> list;
 
 		protected AddressTextAdapter(Context context, ArrayList<String> list, int currentItem, int maxsize, int minsize) {
-			super(context, R.layout.item_birth_year, NO_RESOURCE, currentItem, maxsize, minsize);
+			super(context, R.layout.item_calendar_text, NO_RESOURCE, currentItem, maxsize, minsize);
 			this.list = list;
-			setItemTextResource(R.id.tempValue);
+			setItemTextResource(R.id.tv);
 		}
 
 		@Override

@@ -40,7 +40,10 @@ public class DateWheelViewDialog extends Dialog implements View.OnClickListener 
         tv_title = (TextView) findViewById(R.id.tv_title);
 
         li_wheel_view = (LinearLayout) findViewById(R.id.li_wheel_view);
+        LinearLayout li = (LinearLayout) findViewById(R.id.li);
+        li.setOnClickListener(this);
         li_child = (LinearLayout) findViewById(R.id.li_child);
+        li_child.setOnClickListener(this);
         TextView tv_confirm = (TextView) findViewById(R.id.tv_confirm);
         tv_confirm.setOnClickListener(this);
         TextView tv_cancel = (TextView) findViewById(R.id.tv_cancel);
@@ -51,12 +54,12 @@ public class DateWheelViewDialog extends Dialog implements View.OnClickListener 
     }
 
     private void init() {
-        datePickerWheelView = new DatePickerWheelView(context);
+        datePickerWheelView = new DatePickerWheelView(context, DatePickerWheelView.DATE);
         datePickerWheelView.setDate(currentYear, currentMonth, currentDay);
 
         LinearLayout.LayoutParams li_childLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        li_child.setPadding(DensityUtil.dp2px(context, 30), DensityUtil.dp2px(context, 30),
+        li_childLayoutParams.setMargins(DensityUtil.dp2px(context, 30), DensityUtil.dp2px(context, 30),
                 DensityUtil.dp2px(context, 30), DensityUtil.dp2px(context, 30));
         li_child.setLayoutParams(li_childLayoutParams);
         li_child.setBackgroundResource(R.drawable.dialog_bg);
@@ -79,6 +82,9 @@ public class DateWheelViewDialog extends Dialog implements View.OnClickListener 
 
         if (v.getId() ==  R.id.tv_confirm) {
         } else if (v.getId() ==  R.id.tv_cancel) {
+            dismiss();
+        } else if (v.getId() ==  R.id.li_child) {
+        } else if (v.getId() ==  R.id.li) {
             dismiss();
         }
     }

@@ -35,21 +35,21 @@
 	        android:layout_marginRight="20dip"
 	        android:gravity="center_vertical">
 	        <androidwheelview.dusunboy.github.com.library.views.WheelView
-	            android:id="@+id/wv_birth_year"
+	            android:id="@+id/wv_first"
 	            android:layout_width="0dip"
 	            android:layout_weight="1"
 	            android:layout_height="match_parent"
 	            android:layout_gravity="center_vertical"
 	            />
 	        <androidwheelview.dusunboy.github.com.library.views.WheelView
-	            android:id="@+id/wv_birth_month"
+	            android:id="@+id/wv_second"
 	            android:layout_width="0dip"
 	            android:layout_weight="1"
 	            android:layout_height="match_parent"
 	            android:layout_gravity="center_vertical"
 	            />
 	        <androidwheelview.dusunboy.github.com.library.views.WheelView
-	            android:id="@+id/wv_birth_day"
+	            android:id="@+id/wv_third"
 	            android:layout_width="0dip"
 	            android:layout_weight="1"
 	            android:layout_height="match_parent"

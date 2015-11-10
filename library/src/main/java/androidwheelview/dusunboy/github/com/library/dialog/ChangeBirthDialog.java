@@ -68,9 +68,9 @@ public class ChangeBirthDialog extends Dialog implements View.OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dialog_myinfo_changebirth);
-		wvYear = (WheelView) findViewById(R.id.wv_birth_year);
-		wvMonth = (WheelView) findViewById(R.id.wv_birth_month);
-		wvDay = (WheelView) findViewById(R.id.wv_birth_day);
+		wvYear = (WheelView) findViewById(R.id.wv_first);
+		wvMonth = (WheelView) findViewById(R.id.wv_second);
+		wvDay = (WheelView) findViewById(R.id.wv_third);
 
 		vChangeBirth = findViewById(R.id.ly_myinfo_changebirth);
 		vChangeBirthChild = findViewById(R.id.ly_myinfo_changebirth_child);
@@ -210,13 +210,28 @@ public class ChangeBirthDialog extends Dialog implements View.OnClickListener {
 		}
 	}
 
+	public void setCurrentDate(int year, int month, int day) {
+		selectYear = year + "";
+		selectMonth = month + "";
+		selectDay = day + "";
+		this.currentYear = year;
+		this.currentMonth = month;
+		this.currentDay = day;
+		if (year == getYear()) {
+			this.month = getMonth();
+		} else {
+			this.month = 12;
+		}
+		calDays(year, month);
+	}
+
 	private class CalendarTextAdapter extends AbstractWheelTextAdapter {
 		ArrayList<String> list;
 
 		protected CalendarTextAdapter(Context context, ArrayList<String> list, int currentItem, int maxsize, int minsize) {
-			super(context, R.layout.item_birth_year, NO_RESOURCE, currentItem, maxsize, minsize);
+			super(context, R.layout.item_calendar_text, NO_RESOURCE, currentItem, maxsize, minsize);
 			this.list = list;
-			setItemTextResource(R.id.tempValue);
+			setItemTextResource(R.id.tv);
 		}
 
 		@Override

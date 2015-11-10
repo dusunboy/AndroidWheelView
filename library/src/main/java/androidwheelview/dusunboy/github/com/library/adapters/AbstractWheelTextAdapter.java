@@ -22,9 +22,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import androidwheelview.dusunboy.github.com.library.R;
+import androidwheelview.dusunboy.github.com.library.util.DensityUtil;
 
 /**
  * Abstract wheel adapter provides common functionality for adapters.
@@ -323,7 +327,12 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
 		case TEXT_VIEW_ITEM_RESOURCE:
 			return new TextView(context);
 		default:
-			return inflater.inflate(resource, parent, false);
+			View view = inflater.inflate(resource, parent, false);
+			LinearLayout li = (LinearLayout) view.findViewById(R.id.li);
+			LinearLayout.LayoutParams liLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+					DensityUtil.dp2px(context, 35));
+			li.setLayoutParams(liLayoutParams);
+			return view;
 		}
 	}
 }

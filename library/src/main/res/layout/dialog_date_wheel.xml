@@ -21,47 +21,10 @@
 
         <LinearLayout
             android:id="@+id/li_wheel_view"
-            android:layout_width="match_parent"
-            android:layout_height="160dip"
-            android:layout_marginLeft="20dip"
-            android:layout_marginRight="20dip"
-            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
-                <!--android:id="@+id/wv_birth_year"-->
-                <!--android:layout_width="0dip"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:layout_weight="1" />-->
-
-            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
-                <!--android:id="@+id/wv_birth_month"-->
-                <!--android:layout_width="0dip"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:layout_weight="1" />-->
-
-            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
-                <!--android:id="@+id/wv_birth_day"-->
-                <!--android:layout_width="0dip"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:layout_weight="1" />-->
-
-            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
-                <!--android:id="@+id/wv_birth_day1"-->
-                <!--android:layout_width="0dip"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:layout_weight="1" />-->
-
-            <!--<androidwheelview.dusunboy.github.com.library.views.WheelView-->
-                <!--android:id="@+id/wv_birth_day2"-->
-                <!--android:layout_width="0dip"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:layout_weight="1" />-->
         </LinearLayout>
 
         <RelativeLayout
