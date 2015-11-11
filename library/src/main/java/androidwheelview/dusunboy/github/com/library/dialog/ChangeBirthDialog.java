@@ -229,7 +229,7 @@ public class ChangeBirthDialog extends Dialog implements View.OnClickListener {
 		ArrayList<String> list;
 
 		protected CalendarTextAdapter(Context context, ArrayList<String> list, int currentItem, int maxsize, int minsize) {
-			super(context, R.layout.item_calendar_text, NO_RESOURCE, currentItem, maxsize, minsize);
+			super(context, R.layout.item_calendar_text, NO_RESOURCE, currentItem, maxsize, minsize, list);
 			this.list = list;
 			setItemTextResource(R.id.tv);
 		}

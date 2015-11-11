@@ -32,6 +32,39 @@ public class DateUtil {
         return simpleDateFormat.format(date);
     }
 
+
+    /**
+     * 日期格式转为秒
+     * @param timeFormat
+     * @param time
+     * @return
+     */
+    public static long timeFormat2Second(String timeFormat, String time) {
+        Date date = timeFormat2Date(timeFormat, time);
+        if (date == null) {
+            return 0;
+        } else {
+            return ((date.getTime()) / 1000);
+        }
+    }
+
+    /**
+     * 日期格式转为Date
+     * @param timeFormat
+     * @param time
+     * @return
+     */
+    public static Date timeFormat2Date(String timeFormat, String time) {
+        SimpleDateFormat formatter = new SimpleDateFormat(timeFormat);
+        try {
+            Date date = formatter.parse(time);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * 选择时间段
      * @param startTime
@@ -115,4 +148,14 @@ public class DateUtil {
         return week;
     }
 
+    /**
+     * 获取某年某月最大天数
+     * @param currentYear
+     * @param currentMonth
+     */
+    public static int getMaxDaysOfMonth(int currentYear, int currentMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(currentYear, currentMonth, 1);
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
 }

@@ -12,16 +12,15 @@ import androidwheelview.dusunboy.github.com.library.R;
  * Created by Win8 on 2015/11/10.
  */
 public class CalendarTextAdapter extends AbstractWheelTextAdapter {
-    private final ArrayList<String> list;
 
     public CalendarTextAdapter(Context context, ArrayList<String> list, int currentItem, int maxSize, int minSize) {
-        super(context, R.layout.item_calendar_text, NO_RESOURCE, currentItem, maxSize, minSize);
-        this.list = list;
+        super(context, R.layout.item_calendar_text, NO_RESOURCE, currentItem, maxSize, minSize, list);
         setItemTextResource(R.id.tv);
     }
 
     @Override
     public View getItem(int index, View convertView, ViewGroup parent) {
+
         return super.getItem(index, convertView, parent);
     }
 
@@ -38,4 +37,6 @@ public class CalendarTextAdapter extends AbstractWheelTextAdapter {
     public String get(int currentItem) {
         return  list.get(currentItem);
     }
+
+
 }

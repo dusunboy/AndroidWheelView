@@ -49,6 +49,7 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
 
 	/** Default text size */
 	public static final int DEFAULT_TEXT_SIZE = 24;
+	protected final ArrayList<String> list;
 
 	// Text settings
 	private int textColor = DEFAULT_TEXT_COLOR;
@@ -91,29 +92,28 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
 	 *            when instantiating items views
 	 */
 	protected AbstractWheelTextAdapter(Context context, int itemResource) {
-		this(context, itemResource, NO_RESOURCE, 0, maxSize, minSize);
+		this(context, itemResource, NO_RESOURCE, 0, maxSize, minSize, new ArrayList<String>());
 	}
 
 	/**
 	 * Constructor
-	 * 
-	 * @param context
+	 *  @param context
 	 *            the current context
 	 * @param itemResource
 	 *            the resource ID for a layout file containing a TextView to use
 	 *            when instantiating items views
 	 * @param itemTextResource
-	 *            the resource ID for a text view in the item layout
+	 * @param list
 	 */
 	protected AbstractWheelTextAdapter(Context context, int itemResource, int itemTextResource, int currentIndex,
-			int maxSize, int minSize) {
+									   int maxSize, int minSize, ArrayList<String> list) {
 		this.context = context;
 		itemResourceId = itemResource;
 		itemTextResourceId = itemTextResource;
 		this.currentIndex = currentIndex;
 		this.maxSize = maxSize;
 		this.minSize = minSize;
-
+		this.list = list;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -334,5 +334,37 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
 			li.setLayoutParams(liLayoutParams);
 			return view;
 		}
+	}
+
+	/**
+	 * 增加元素
+	 * @param str
+	 */
+	public void add(String str) {
+		list.add(str);
+	}
+
+	@Override
+	public void notifyDataChangedEvent() {
+		super.notifyDataChangedEvent();
+	}
+
+	public void clear() {
+		arrayList.clear();
+		list.clear();
+		notifyDataChangedEvent();
+	}
+
+	public void addAll(ArrayList<String> arrayList) {
+		list.addAll(arrayList);
+		notifyDataChangedEvent();
+	}
+
+	public int getCurrentIndex() {
+		return currentIndex;
+	}
+
+	public void setCurrentIndex(int currentIndex) {
+		this.currentIndex = currentIndex;
 	}
 }

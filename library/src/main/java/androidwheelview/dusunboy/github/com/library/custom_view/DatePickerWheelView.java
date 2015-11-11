@@ -7,9 +7,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import androidwheelview.dusunboy.github.com.library.R;
 import androidwheelview.dusunboy.github.com.library.adapters.CalendarTextAdapter;
+import androidwheelview.dusunboy.github.com.library.util.DateUtil;
 import androidwheelview.dusunboy.github.com.library.util.DensityUtil;
 import androidwheelview.dusunboy.github.com.library.views.OnWheelChangedListener;
 import androidwheelview.dusunboy.github.com.library.views.OnWheelScrollListener;
@@ -32,9 +34,9 @@ public class DatePickerWheelView extends LinearLayout implements OnWheelChangedL
     private  WheelView wv_first;
     private  WheelView wv_second;
     private  WheelView wv_third;
-    private ArrayList<String> arry_years;
-    private ArrayList<String> arry_months;
-    private ArrayList<String> arry_days;
+    private ArrayList<String> firstArray;
+    private ArrayList<String> secondArray;
+    private ArrayList<String> thirdArray;
     private CalendarTextAdapter firstAdapter;
     private CalendarTextAdapter secondAdapter;
     private CalendarTextAdapter thirdAdapter;
@@ -59,6 +61,14 @@ public class DatePickerWheelView extends LinearLayout implements OnWheelChangedL
     private int maxTextSize;
     private int minTextSize;
     private int visibleItems;
+    private ArrayList<String> fourthArray;
+    private ArrayList<String> fifthArray;
+    private int beforeYearRange;
+    private int afterYearRange;
+    private int beforeYear;
+    private int afterYear;
+    private ArrayList<String> monthArray;
+    private ArrayList<String> currentYearRanges;
 
     public DatePickerWheelView(Context context, int mode) {
         super(context);
@@ -103,6 +113,8 @@ public class DatePickerWheelView extends LinearLayout implements OnWheelChangedL
         maxTextSize = 24;
         minTextSize = 14;
         visibleItems = 5;
+        beforeYearRange = 20;
+        afterYearRange = 5;
 
         LinearLayout.LayoutParams liLayoutParams = new LinearLayout.LayoutParams(DensityUtil.dp2px(context, viewWidth),
                 DensityUtil.dp2px(context, 160));
@@ -129,9 +141,17 @@ public class DatePickerWheelView extends LinearLayout implements OnWheelChangedL
         }
 
 
-        arry_years = new ArrayList<String>();
-        arry_months = new ArrayList<String>();
-        arry_days = new ArrayList<String>();
+        firstArray = new ArrayList<String>();
+        secondArray = new ArrayList<String>();
+        thirdArray = new ArrayList<String>();
+        fourthArray = new ArrayList<String>();
+        fifthArray = new ArrayList<String>();
+
+        monthArray = new ArrayList<String>();
+        for (int i = 0; i < 12; i++) {
+            monthArray.add(String.valueOf(i + 1));
+        }
+
 
         firstAdapter = new CalendarTextAdapter(context, new ArrayList<String>(), 0, maxTextSize, minTextSize);
         wv_first.setVisibleItems(visibleItems);
@@ -157,52 +177,85 @@ public class DatePickerWheelView extends LinearLayout implements OnWheelChangedL
     }
 
     /**
-     * 设置年月日
-     *
-     * @param year
-     * @param month
-     * @param day
+     * 设置日期
+     * @param currentDate
      */
-    public void setDate(int year, int month, int day) {
+    public void setDate(String currentDate) {
+        Date currentDates = DateUtil.timeFormat2Date("yyyy-MM-dd", currentDate);
+        currentYear = currentDates.getYear() + 1900;
+        currentMonth = currentDates.getMonth();
+        currentDay = currentDates.getDate();
+        beforeYear = currentYear - beforeYearRange;
+        afterYear = currentYear + afterYearRange;
+        firstAdapter.clear();
+        secondAdapter.clear();
+        thirdAdapter.clear();
 
-//        String startTime = DateUtil.second2TimeFormat("yyyy-MM-dd", String.valueOf(System.currentTimeMillis() / 1000));
-//        String endTime = DateUtil.second2TimeFormat("yyyy-MM-dd", String.valueOf((System.currentTimeMillis() / 1000) + 6 * 30 * 24 * 3600));
+        //年
+        currentYearRanges = getYearRange(beforeYear, afterYear);
+        firstAdapter.addAll(currentYearRanges);
+        //月份
+        secondAdapter.addAll(monthArray);
+        //日
+        int maxDaysOfMonth = DateUtil.getMaxDaysOfMonth(currentYear, currentMonth);
+        for (int i = 1; i <= maxDaysOfMonth; i++) {
+            thirdAdapter.add(String.valueOf(i));
+        }
 
-        
-        this.currentYear = year;
-        this.currentMonth = month;
-        this.currentDay = day;
+        firstAdapter.notifyDataChangedEvent();
+        secondAdapter.notifyDataChangedEvent();
+        thirdAdapter.notifyDataChangedEvent();
+        wv_first.setCurrentItem(beforeYearRange);
+        wv_second.setCurrentItem(currentMonth);
+        wv_third.setCurrentItem(currentDay - 1);
     }
 
+    /**
+     * 获取年份范围
+     * @param beforeYear
+     * @param afterYear
+     */
+    private ArrayList<String> getYearRange(int beforeYear, int afterYear) {
+        ArrayList<String> array = new ArrayList<String>();
+        for (int i = beforeYear; i <= afterYear; i++) {
+            array.add(String.valueOf(i));
+        }
+        return array;
+    }
 
     @Override
     public void onChanged(WheelView wheel, int oldValue, int newValue) {
         if (wheel.getId() == R.id.wv_first) {
-            String currentText = (String) firstAdapter.get(wheel.getCurrentItem());
-//            selectYear = currentText;
-            setTextViewSize(currentText, firstAdapter);
-            currentYear = Integer.parseInt(currentText);
-//            setYear(currentYear);
-//            initMonths(month);
-            secondAdapter = new CalendarTextAdapter(context, arry_months, 0, maxTextSize, minTextSize);
-            wv_second.setVisibleItems(5);
-            wv_second.setViewAdapter(secondAdapter);
-            wv_second.setCurrentItem(0);
+            currentYear = Integer.parseInt(firstAdapter.get(wheel.getCurrentItem()));
+            firstAdapter.setCurrentIndex(wheel.getCurrentItem());
+            firstAdapter.notifyDataChangedEvent();
+
+            resetDayWheelView();
         } else if (wheel.getId() == R.id.wv_second) {
-            String currentText = (String) secondAdapter.get(wheel.getCurrentItem());
-//            selectMonth = currentText;
-            setTextViewSize(currentText, secondAdapter);
-//            setMonth(Integer.parseInt(currentText));
-//            initDays(day);
-            thirdAdapter = new CalendarTextAdapter(context, arry_days, 0, maxTextSize, minTextSize);
-            wv_third.setVisibleItems(5);
-            wv_third.setViewAdapter(thirdAdapter);
-            wv_third.setCurrentItem(0);
+            currentMonth = Integer.parseInt(secondAdapter.get(wheel.getCurrentItem())) - 1;
+            secondAdapter.setCurrentIndex(wheel.getCurrentItem());
+
+            resetDayWheelView();
+            secondAdapter.notifyDataChangedEvent();
         } else if (wheel.getId() == R.id.wv_third) {
-            String currentText = (String) thirdAdapter.get(wheel.getCurrentItem());
-            setTextViewSize(currentText, thirdAdapter);
-//            selectDay = currentText;
+            currentDay = Integer.parseInt(thirdAdapter.get(wheel.getCurrentItem()));
+            thirdAdapter.setCurrentIndex(wheel.getCurrentItem());
+            thirdAdapter.notifyDataChangedEvent();
         }
+    }
+
+    /**
+     * 重置天的滚轮
+     */
+    private void resetDayWheelView() {
+        thirdAdapter.clear();
+        int maxDaysOfMonth = DateUtil.getMaxDaysOfMonth(currentYear, currentMonth);
+        for (int i = 1; i <= maxDaysOfMonth; i++) {
+            thirdAdapter.add(String.valueOf(i));
+        }
+        wv_third.setCurrentItem(0);
+        wv_third.setViewAdapter(thirdAdapter);
+        thirdAdapter.notifyDataChangedEvent();
     }
 
     @Override
@@ -213,37 +266,19 @@ public class DatePickerWheelView extends LinearLayout implements OnWheelChangedL
     @Override
     public void onScrollingFinished(WheelView wheel) {
         if (wheel.getId() == R.id.wv_first) {
-            String currentText = (String) firstAdapter.get(wheel.getCurrentItem());
-            setTextViewSize(currentText, firstAdapter);
+            firstAdapter.setCurrentIndex(wheel.getCurrentItem());
+            wv_first.setCurrentItem(wheel.getCurrentItem());
+            firstAdapter.notifyDataChangedEvent();
+
         } else if (wheel.getId() == R.id.wv_second) {
-            String currentText = (String) secondAdapter.get(wheel.getCurrentItem());
-            setTextViewSize(currentText, secondAdapter);
+            secondAdapter.setCurrentIndex(wheel.getCurrentItem());
+            wv_second.setCurrentItem(wheel.getCurrentItem());
+            secondAdapter.notifyDataChangedEvent();
+
         } else if (wheel.getId() == R.id.wv_third) {
-            String currentText = (String) thirdAdapter.get(wheel.getCurrentItem());
-            setTextViewSize(currentText, thirdAdapter);
+            thirdAdapter.setCurrentIndex(wheel.getCurrentItem());
+            wv_third.setCurrentItem(wheel.getCurrentItem());
+            thirdAdapter.notifyDataChangedEvent();
         }
     }
-
-
-
-    /**
-     * 设置字体大小
-     * @param currentItemText
-     * @param adapter
-     */
-    public void setTextViewSize(String currentItemText, CalendarTextAdapter adapter) {
-        ArrayList<View> arrayList = adapter.getTestViews();
-        int size = arrayList.size();
-        String currentText;
-        for (int i = 0; i < size; i++) {
-            TextView textView = (TextView) arrayList.get(i);
-            currentText = textView.getText().toString();
-            if (currentItemText.equals(currentText)) {
-                textView.setTextSize(maxTextSize);
-            } else {
-                textView.setTextSize(minTextSize);
-            }
-        }
-    }
-
 }
