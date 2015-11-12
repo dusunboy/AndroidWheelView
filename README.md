@@ -1,5 +1,5 @@
 # AndroidWheelView
-  更加随意组合的滚轮控件
+  更加随意组合的滚轮选择控件
 ## 通过Gradle下载依赖包
 
 ```groovy
@@ -10,13 +10,16 @@ dependencies {
 }
 
 ```
-## 使用
+### 使用
 ---
-  1.实例化
+
+1.实例化
 ```java
     WheelViewDialog wheelViewDialog = new WheelViewDialog(MainActivity.this, WheelViewDialog.DATE);
 ```
-  2.可选模式
+
+
+2.可选模式
 >```
   日期 DATE
   日期加时间 DATE_TIME
@@ -31,17 +34,15 @@ dependencies {
 
 >```
 
-3.填充数据
-
-
 ## 更新日志
 * 1.0.2
-    增加时间选择
-    常用城市区三级联动
-    自定义二，三级联动
+    增加时间选择<br>
+    常用城市区三级联动<br>
+    自定义二，三级联动<br>
     自定义一，二，三，四，五无联动选择
 
- 感谢([ywl5320](http://blog.csdn.net/ywl5320/article/details/44730457))
+
+## 感谢([ywl5320](http://blog.csdn.net/ywl5320/article/details/44730457))
 -------
 基于ywl5320作者的源码代码开发优化 
 http://blog.csdn.net/ywl5320/article/details/44730457<br>
