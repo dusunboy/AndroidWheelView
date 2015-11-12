@@ -7,10 +7,6 @@ public interface OnTextSetListener extends OnSetListener{
 
     /**
      * 监听文本设置
-     * @param currentFirstStr
-     * @param currentThirdStr
-     * @param currentFourthStr
-     * @param currentFifthStr
      * @param wheelViewDialog
      * @param text
      */

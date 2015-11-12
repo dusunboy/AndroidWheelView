@@ -19,9 +19,9 @@ public class DateUtil {
 
 
     /**
-     * 秒转为时间格式<br/>
-     * yyyy-MM-dd HH:mm<br/>
-     * MM月dd日 EEE HH:mm<br/>
+     * 秒转为时间格式
+     * yyyy-MM-dd HH:mm,
+     * MM月dd日 EEE HH:mm
      * @param timeFormat
      * @param time
      * @return
