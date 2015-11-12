@@ -12,7 +12,6 @@ import androidwheelview.dusunboy.github.com.library.dialog.OnDateSetListener;
 import androidwheelview.dusunboy.github.com.library.dialog.OnTextSetListener;
 import androidwheelview.dusunboy.github.com.library.dialog.WheelViewDialog;
 import androidwheelview.dusunboy.github.com.library.model.AreaBean;
-import androidwheelview.dusunboy.github.com.library.util.LogUtil;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -22,7 +21,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LogUtil.setDebugMode(true);
         TextView tv_date = (TextView) findViewById(R.id.tv_date);
         TextView tv_time = (TextView) findViewById(R.id.tv_time);
 
