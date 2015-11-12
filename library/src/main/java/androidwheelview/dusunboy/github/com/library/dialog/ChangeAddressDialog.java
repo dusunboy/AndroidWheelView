@@ -150,7 +150,7 @@ public class ChangeAddressDialog extends Dialog implements View.OnClickListener 
 		ArrayList<String> list;
 
 		protected AddressTextAdapter(Context context, ArrayList<String> list, int currentItem, int maxsize, int minsize) {
-			super(context, R.layout.item_calendar_text, NO_RESOURCE, currentItem, maxsize, minsize, list);
+			super(context, R.layout.item_text, NO_RESOURCE, currentItem, maxsize, minsize, list);
 			this.list = list;
 			setItemTextResource(R.id.tv);
 		}

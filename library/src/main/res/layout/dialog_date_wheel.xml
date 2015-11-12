@@ -27,28 +27,33 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/li_bottom"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_cancel"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/li_bottom"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:text="" />
+                android:orientation="horizontal"
+                >
 
-            <TextView
-                android:id="@+id/tv_confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:visibility="gone"
-                 />
+                <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="" />
+            </LinearLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

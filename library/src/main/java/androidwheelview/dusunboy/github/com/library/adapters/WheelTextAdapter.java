@@ -11,10 +11,10 @@ import androidwheelview.dusunboy.github.com.library.R;
 /**
  * Created by Win8 on 2015/11/10.
  */
-public class CalendarTextAdapter extends AbstractWheelTextAdapter {
+public class WheelTextAdapter extends AbstractWheelTextAdapter {
 
-    public CalendarTextAdapter(Context context, ArrayList<String> list, int currentItem, int maxSize, int minSize) {
-        super(context, R.layout.item_calendar_text, NO_RESOURCE, currentItem, maxSize, minSize, list);
+    public WheelTextAdapter(Context context, ArrayList<String> list, int currentItem, int maxSize, int minSize) {
+        super(context, R.layout.item_text, NO_RESOURCE, currentItem, maxSize, minSize, list);
         setItemTextResource(R.id.tv);
     }
 

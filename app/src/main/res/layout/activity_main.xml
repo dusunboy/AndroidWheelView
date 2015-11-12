@@ -1,28 +1,124 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:orientation="vertical" >
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_birth"
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:layout_marginLeft="12dip"
-        android:layout_marginRight="12dip"
-        android:layout_marginTop="50dip"
-        android:background="@drawable/btn_blue_selector"
-        android:gravity="center"
-        android:text="选择时间" />
-    <TextView
-        android:id="@+id/tv_address"
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:layout_marginLeft="12dip"
-        android:layout_marginRight="12dip"
-        android:layout_marginTop="24dip"
-        android:background="@drawable/btn_blue_selector"
-        android:gravity="center"
-        android:text="选择地点"/>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip"
+            android:layout_marginTop="50dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="日期选择" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip"
+            android:layout_marginTop="24dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="时间选择" />
+
+        <TextView
+            android:id="@+id/tv_province_city_area"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip"
+            android:layout_marginTop="24dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="省市区三级联动选择" />
+
+        <TextView
+            android:id="@+id/tv_two_level_linkage"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip"
+            android:layout_marginTop="24dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="二级联动选择" />
+
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:layout_marginTop="24dip"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip"
+            android:text="无联动选择"/>
+
+
+        <TextView
+            android:id="@+id/tv_one_level"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_marginLeft="60dip"
+            android:layout_marginRight="60dip"
+            android:layout_marginTop="12dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="一级选择" />
+
+        <TextView
+            android:id="@+id/tv_two_level"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_marginLeft="60dip"
+            android:layout_marginRight="60dip"
+            android:layout_marginTop="12dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="二级选择" />
+
+        <TextView
+            android:id="@+id/tv_three_level"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_marginLeft="60dip"
+            android:layout_marginRight="60dip"
+            android:layout_marginTop="12dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="三级选择" />
+
+        <TextView
+            android:id="@+id/tv_four_level"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_marginLeft="60dip"
+            android:layout_marginRight="60dip"
+            android:layout_marginTop="12dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="四级选择" />
+
+        <TextView
+            android:id="@+id/tv_five_level"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_marginLeft="60dip"
+            android:layout_marginRight="60dip"
+            android:layout_marginTop="12dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="五级选择" />
+
+    </LinearLayout>
+</ScrollView>
+

@@ -11,69 +11,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:visibility="gone"
         android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/tv_year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text="@string/year"/>
 
     <androidwheelview.dusunboy.github.com.library.views.WheelView
         android:id="@+id/wv_second"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:visibility="gone"
         android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/tv_month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text="@string/month"/>
 
     <androidwheelview.dusunboy.github.com.library.views.WheelView
         android:id="@+id/wv_third"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:visibility="gone"
         android:layout_weight="1" />
-
-    <TextView
-        android:id="@+id/tv_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text="@string/day"/>
 
     <androidwheelview.dusunboy.github.com.library.views.WheelView
         android:id="@+id/wv_fourth"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:visibility="gone"
         android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/tv_hour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text="@string/hour"/>
 
     <androidwheelview.dusunboy.github.com.library.views.WheelView
         android:id="@+id/wv_fifth"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:visibility="gone"
         android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/tv_minute"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text="@string/minute"/>
 
 </LinearLayout>

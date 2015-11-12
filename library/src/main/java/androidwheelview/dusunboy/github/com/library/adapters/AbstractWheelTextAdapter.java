@@ -247,8 +247,13 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
 				}
 				textView.setText(text);
 
+				int textLength = textView.getText().toString().length();
 				if (index == currentIndex) {
-					textView.setTextSize(maxSize);
+					if (textLength > 4) {
+						textView.setTextSize(15);
+					} else {
+						textView.setTextSize(maxSize);
+					}
 				} else {
 					textView.setTextSize(minSize);
 				}
