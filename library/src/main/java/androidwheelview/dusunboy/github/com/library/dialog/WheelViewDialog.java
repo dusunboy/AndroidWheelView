@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import androidwheelview.dusunboy.github.com.library.R;
 import androidwheelview.dusunboy.github.com.library.custom_view.DatePickerWheelView;
 import androidwheelview.dusunboy.github.com.library.custom_view.LevelLinkageWheelView;
+import androidwheelview.dusunboy.github.com.library.custom_view.NoLevelLinkageWheelView;
 import androidwheelview.dusunboy.github.com.library.model.AreaBean;
 import androidwheelview.dusunboy.github.com.library.util.DensityUtil;
 
@@ -39,6 +40,30 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
      * 二级联动
      */
     public static final int TWO_LINKAGE = 3;
+    /**
+     * 三级联动
+     */
+    public static final int THREE_LINKAGE = 4;
+    /**
+     * 一级选择
+     */
+    public static final int ONE_LEVEL = 5;
+    /**
+     * 二级选择
+     */
+    public static final int TWO_LEVEL = 6;
+    /**
+     * 三级选择
+     */
+    public static final int THREE_LEVEL = 7;
+    /**
+     * 四级选择
+     */
+    public static final int FOUR_LEVEL = 8;
+    /**
+     * 五级选择
+     */
+    public static final int FIVE_LEVEL = 9;
 
     private final Context context;
     private final int mode;
@@ -59,6 +84,8 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
     private OnSetListener onNegativeButtonClickListener;
     private LevelLinkageWheelView levelLinkageWheelView;
     private ArrayList<AreaBean> areaBeans;
+    private ArrayList<String>[] arrayLists;
+    private NoLevelLinkageWheelView noLevelLinkageWheelView;
 
     public WheelViewDialog(Context context, int mode) {
         super(context, R.style.DialogStyle);
@@ -94,9 +121,14 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
             datePickerWheelView.setDate(currentDate);
         } else if(mode == PROVINCE_CITY_AREA ) {
             levelLinkageWheelView = new LevelLinkageWheelView(context, mode);
-        }  else if(mode == TWO_LINKAGE ) {
+        }  else if(mode == TWO_LINKAGE || mode == THREE_LINKAGE) {
             levelLinkageWheelView = new LevelLinkageWheelView(context, mode);
             levelLinkageWheelView.setData(areaBeans);
+        } else if(mode == ONE_LEVEL || mode == TWO_LEVEL
+                || mode == THREE_LEVEL || mode == FOUR_LEVEL
+                || mode == FIVE_LEVEL) {
+            noLevelLinkageWheelView = new NoLevelLinkageWheelView(context, mode);
+            noLevelLinkageWheelView.setData(arrayLists);
         }
 
         LinearLayout.LayoutParams li_childLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -135,8 +167,13 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
 
         if (mode == DATE || mode == DATE_TIME) {
             li_wheel_view.addView(datePickerWheelView);
-        } else if(mode == PROVINCE_CITY_AREA || mode == TWO_LINKAGE) {
+        } else if(mode == PROVINCE_CITY_AREA || mode == TWO_LINKAGE
+                || mode == THREE_LINKAGE) {
             li_wheel_view.addView(levelLinkageWheelView);
+        }  else if(mode == ONE_LEVEL || mode == TWO_LEVEL
+                || mode == THREE_LEVEL || mode == FOUR_LEVEL
+                || mode == FIVE_LEVEL) {
+            li_wheel_view.addView(noLevelLinkageWheelView);
         }
 
         LinearLayout.LayoutParams tv_titleLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -159,9 +196,15 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
                     onPositiveButtonClickListener.onDateSet(this, datePickerWheelView.getCurrentYear(),
                             datePickerWheelView.getCurrentMonth() + 1, datePickerWheelView.getCurrentDay(),
                             datePickerWheelView.getCurrentHour(), datePickerWheelView.getCurrentMinutes());
-                } else if(mode == PROVINCE_CITY_AREA || mode == TWO_LINKAGE) {
+                } else if(mode == PROVINCE_CITY_AREA || mode == TWO_LINKAGE
+                        || mode == THREE_LINKAGE) {
                     OnTextSetListener onPositiveButtonClickListener = (OnTextSetListener) this.onPositiveButtonClickListener;
                     onPositiveButtonClickListener.onTextSet(this, levelLinkageWheelView.getCurrentTextStr());
+                } else if(mode == ONE_LEVEL || mode == TWO_LEVEL
+                        || mode == THREE_LEVEL || mode == FOUR_LEVEL
+                        || mode == FIVE_LEVEL) {
+                    OnTextSetListener onPositiveButtonClickListener = (OnTextSetListener) this.onPositiveButtonClickListener;
+                    onPositiveButtonClickListener.onTextSet(this, noLevelLinkageWheelView.getCurrentTextStr());
                 }
             } else {
                 dismiss();
@@ -173,9 +216,15 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
                     onNegativeButtonClickListener.onDateSet(this, datePickerWheelView.getCurrentYear(),
                             datePickerWheelView.getCurrentMonth() + 1, datePickerWheelView.getCurrentDay(),
                             datePickerWheelView.getCurrentHour(), datePickerWheelView.getCurrentMinutes());
-                } else if(mode == PROVINCE_CITY_AREA || mode == TWO_LINKAGE) {
+                } else if(mode == PROVINCE_CITY_AREA || mode == TWO_LINKAGE
+                        || mode == THREE_LINKAGE) {
                     OnTextSetListener onNegativeButtonClickListener = (OnTextSetListener) this.onNegativeButtonClickListener;
                     onNegativeButtonClickListener.onTextSet(this, levelLinkageWheelView.getCurrentTextStr());
+                } else if(mode == ONE_LEVEL || mode == TWO_LEVEL
+                        || mode == THREE_LEVEL || mode == FOUR_LEVEL
+                        || mode == FIVE_LEVEL) {
+                    OnTextSetListener onNegativeButtonClickListener = (OnTextSetListener) this.onNegativeButtonClickListener;
+                    onNegativeButtonClickListener.onTextSet(this, noLevelLinkageWheelView.getCurrentTextStr());
                 }
             } else {
                 dismiss();
@@ -218,5 +267,9 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
 
     public void setData(ArrayList<AreaBean> areaBeans) {
         this.areaBeans = areaBeans;
+    }
+
+    public void setData(ArrayList<String>... arrayLists) {
+        this.arrayLists = arrayLists;
     }
 }

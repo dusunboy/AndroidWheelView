@@ -5,18 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import androidwheelview.dusunboy.github.com.library.R;
 import androidwheelview.dusunboy.github.com.library.adapters.WheelTextAdapter;
 import androidwheelview.dusunboy.github.com.library.dialog.WheelViewDialog;
-import androidwheelview.dusunboy.github.com.library.model.AreaBean;
 import androidwheelview.dusunboy.github.com.library.util.DensityUtil;
 import androidwheelview.dusunboy.github.com.library.views.OnWheelChangedListener;
 import androidwheelview.dusunboy.github.com.library.views.OnWheelScrollListener;
@@ -25,7 +18,7 @@ import androidwheelview.dusunboy.github.com.library.views.WheelView;
 /**
  * Created by Win8 on 2015/11/9.
  */
-public class LevelLinkageWheelView extends LinearLayout implements OnWheelChangedListener, OnWheelScrollListener {
+public class NoLevelLinkageWheelView extends LinearLayout implements OnWheelChangedListener, OnWheelScrollListener {
 
     private int level;
     private  Context context;
@@ -57,16 +50,22 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
     private int minTextSize;
     private int visibleItems;
 
-    private List<AreaBean> areaBeans;
+    private ArrayList<String>[] arrayLists;
 
-    public LevelLinkageWheelView(Context context, int mode) {
+    public NoLevelLinkageWheelView(Context context, int mode) {
         super(context);
         this.context = context;
         this.mode = mode;
-        if (mode == WheelViewDialog.PROVINCE_CITY_AREA || mode == WheelViewDialog.THREE_LINKAGE) {
-            level = 3;
-        } else if (mode == WheelViewDialog.TWO_LINKAGE) {
+        if (mode == WheelViewDialog.ONE_LEVEL) {
+            level = 1;
+        } else if (mode == WheelViewDialog.TWO_LEVEL) {
             level = 2;
+        } else if (mode == WheelViewDialog.THREE_LEVEL) {
+            level = 3;
+        } else if (mode == WheelViewDialog.FOUR_LEVEL) {
+            level = 4;
+        } else if (mode == WheelViewDialog.FIVE_LEVEL) {
+            level = 5;
         }
         initView();
         init();
@@ -95,8 +94,8 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
             maxTextSize = 20;
             minTextSize = 12;
         } else  {
-            maxTextSize = 20;
-            minTextSize = 12;
+            maxTextSize = 14;
+            minTextSize = 10;
         }
         visibleItems = 5;
 
@@ -106,18 +105,13 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
         li.setLayoutParams(liLayoutParams);
 
 
-        if (mode == WheelViewDialog.PROVINCE_CITY_AREA || mode == WheelViewDialog.THREE_LINKAGE) {
-            LayoutParams wheelViewLayoutParams = new LayoutParams(DensityUtil.dp2px(context, (viewWidth) / 3),
-                    LayoutParams.MATCH_PARENT);
-            wv_first.setLayoutParams(wheelViewLayoutParams);
-            wv_second.setLayoutParams(wheelViewLayoutParams);
-            wv_third.setLayoutParams(wheelViewLayoutParams);
-        } else if (mode == WheelViewDialog.TWO_LINKAGE) {
-            LayoutParams wheelViewLayoutParams = new LayoutParams(DensityUtil.dp2px(context, (viewWidth) / 2),
-                    LayoutParams.MATCH_PARENT);
-            wv_first.setLayoutParams(wheelViewLayoutParams);
-            wv_second.setLayoutParams(wheelViewLayoutParams);
-        }
+        LinearLayout.LayoutParams wheelViewLayoutParams = new LinearLayout.LayoutParams(DensityUtil.dp2px(context, viewWidth / level),
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        wv_first.setLayoutParams(wheelViewLayoutParams);
+        wv_second.setLayoutParams(wheelViewLayoutParams);
+        wv_third.setLayoutParams(wheelViewLayoutParams);
+        wv_fourth.setLayoutParams(wheelViewLayoutParams);
+        wv_fifth.setLayoutParams(wheelViewLayoutParams);
 
         firstAdapter = new WheelTextAdapter(context, new ArrayList<String>(), 0, maxTextSize, minTextSize);
         wv_first.setVisibleItems(visibleItems);
@@ -154,36 +148,20 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
         wv_fifth.addChangingListener(this);
         wv_fifth.addScrollingListener(this);
 
-        if (mode == WheelViewDialog.PROVINCE_CITY_AREA) {
-            try {
-                StringBuffer stringBuffer = new StringBuffer();
-                InputStream inputStream = context.getAssets().open("city.json");
-                int len = -1;
-                byte[] buf = new byte[1024];
-                while ((len = inputStream.read(buf)) != -1) {
-                    stringBuffer.append(new String(buf, 0, len, "utf-8"));
-                }
-                inputStream.close();
-                List<AreaBean> areaBeans = new Gson().fromJson(stringBuffer.toString(), new TypeToken<List<AreaBean>>(){}.getType());
-                setData(areaBeans);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     /**
      * 设置级联数据
-     * @param areaBeans
+     * @param arrayLists
      */
-    public void setData(List<AreaBean> areaBeans) {
+    public void setData(ArrayList<String>[] arrayLists) {
 
         currentFirst = 0;
         currentSecond = 0;
         currentThird = 0;
         currentFourth = 0;
         currentFifth = 0;
-        this.areaBeans = areaBeans;
+        this.arrayLists = arrayLists;
         resetLevelData();
     }
 
@@ -191,38 +169,28 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
      * 获取各个级联的数据
      */
     private void resetLevelData() {
-        if (areaBeans != null) {
+        if (arrayLists != null) {
             firstAdapter.clear();
             secondAdapter.clear();
             thirdAdapter.clear();
             fourthAdapter.clear();
             fifthAdapter.clear();
 
-            for (int i = 0; i < areaBeans.size(); i++) {
-                firstAdapter.add(areaBeans.get(i).getName());
-                if (i == currentFirst) {
-                    List<AreaBean> secondAreaBeans = areaBeans.get(currentFirst).getArea();
-                    for (int i1 = 0; i1 < secondAreaBeans.size(); i1++) {
-                        secondAdapter.add(secondAreaBeans.get(i1).getName());
-                        if (i1 == currentSecond) {
-                            List<AreaBean> thirdAreaBeans = secondAreaBeans.get(currentSecond).getArea();
-                            for (int i2 = 0; i2 < thirdAreaBeans.size(); i2++) {
-                                thirdAdapter.add(thirdAreaBeans.get(i2).getName());
-                                if (i2 == currentThird) {
-                                    List<AreaBean> fourthAreaBeans = thirdAreaBeans.get(currentThird).getArea();
-                                    for (int i3 = 0; i3 < fourthAreaBeans.size(); i3++) {
-                                        fourthAdapter.add(fourthAreaBeans.get(i3).getName());
-                                        if (i3 == currentFourth) {
-                                            List<AreaBean> fifthAreaBeans = thirdAreaBeans.get(currentFourth).getArea();
-                                            for (int i4 = 0; i4 < fifthAreaBeans.size(); i4++) {
-                                                fifthAdapter.add(fifthAreaBeans.get(i4).getName());
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+            for (int i = 0; i < arrayLists.length; i++) {
+                if (i == 0) {
+                    firstAdapter.addAll(arrayLists[0]);
+                }
+                if (i == 1) {
+                    secondAdapter.addAll(arrayLists[1]);
+                }
+                if (i == 2) {
+                    thirdAdapter.addAll(arrayLists[2]);
+                }
+                if (i == 3) {
+                    fourthAdapter.addAll(arrayLists[3]);
+                }
+                if (i == 4) {
+                    fifthAdapter.addAll(arrayLists[4]);
                 }
             }
 
@@ -252,18 +220,9 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
             currentFirst = wheel.getCurrentItem();
             firstAdapter.setCurrentIndex(wheel.getCurrentItem());
             firstAdapter.notifyDataChangedEvent();
-
-            currentSecond = 0;
-            currentThird = 0;
-            resetLevelData();
         } else if (wheel.getId() == R.id.wv_second) {
             currentSecond = wheel.getCurrentItem();
             secondAdapter.setCurrentIndex(wheel.getCurrentItem());
-
-            currentThird = 0;
-            if (level > 2) {
-                resetLevelData();
-            }
             secondAdapter.notifyDataChangedEvent();
         } else if (wheel.getId() == R.id.wv_third) {
             currentThird = wheel.getCurrentItem();
@@ -315,45 +274,21 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
      * 获取当前选择文本字符
      */
     public String getCurrentTextStr() {
-        String firstStr = "";
-        String secondStr = "";
-        String thirdStr = "";
-        String fourthStr = "";
-        String fifthStr = "";
-        if (areaBeans.size() > 0) {
-            firstStr = areaBeans.get(currentFirst).getName();
-            List<AreaBean> secondArea = areaBeans.get(currentFirst).getArea();
-            if (secondArea.size() > 0) {
-                secondStr = secondArea.get(currentSecond).getName();
-                List<AreaBean> thirdArea = secondArea.get(currentSecond).getArea();
-                if (thirdArea.size() > 0) {
-                    thirdStr = thirdArea.get(currentThird).getName();
-                    List<AreaBean> fourthArea = thirdArea.get(currentThird).getArea();
-                    if (fourthArea.size() > 0) {
-                        fourthStr = fourthArea.get(currentFourth).getName();
-                        List<AreaBean> fifthArea = fourthArea.get(currentFifth).getArea();
-                        if (fifthArea.size() > 0) {
-                            fifthStr = secondArea.get(currentFifth).getName();
-                        }
-                    }
-                }
-            }
-        }
         String currentTextStr = "";
-        if (level > 0) {
-            currentTextStr = firstStr;
+        if (level > 0 && arrayLists[0].size() > 0) {
+            currentTextStr = arrayLists[0].get(currentFirst);
         }
-        if (level > 1) {
-            currentTextStr += "-" + secondStr;
+        if (level > 1 && arrayLists[1].size() > 0) {
+            currentTextStr += "-" + arrayLists[1].get(currentSecond);
         }
-        if (level > 2) {
-            currentTextStr += "-" + thirdStr;
+        if (level > 2 && arrayLists[2].size() > 0) {
+            currentTextStr += "-" + arrayLists[2].get(currentThird);
         }
-        if (level > 3) {
-            currentTextStr += "-" + fourthStr;
+        if (level > 3 && arrayLists[3].size() > 0) {
+            currentTextStr += "-" + arrayLists[3].get(currentFourth);
         }
-        if (level > 4) {
-            currentTextStr += "-" + fifthStr;
+        if (level > 4 && arrayLists[4].size() > 0) {
+            currentTextStr += "-" + arrayLists[4].get(currentFifth);
         }
         return currentTextStr;
     }

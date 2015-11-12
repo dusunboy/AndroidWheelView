@@ -7,6 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
         android:orientation="vertical">
 
 
@@ -16,7 +18,6 @@
             android:layout_height="50dip"
             android:layout_marginLeft="12dip"
             android:layout_marginRight="12dip"
-            android:layout_marginTop="50dip"
             android:background="@drawable/btn_blue_selector"
             android:gravity="center"
             android:text="日期选择" />
@@ -53,6 +54,17 @@
             android:background="@drawable/btn_blue_selector"
             android:gravity="center"
             android:text="二级联动选择" />
+
+        <TextView
+            android:id="@+id/tv_three_level_linkage"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip"
+            android:layout_marginTop="24dip"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:text="三级联动选择" />
 
 
         <TextView android:layout_width="match_parent"
