@@ -5,7 +5,7 @@
 ```groovy
 
 dependencies {
-    compile 'com.github.dusunboy:androidwheelview-library:1.0.1'
+    compile 'com.github.dusunboy:androidwheelview-library:1.0.2'
     compile "com.google.code.gson:gson:2.3.1"
 }
 
