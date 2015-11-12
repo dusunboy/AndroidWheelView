@@ -1,14 +1,43 @@
 # AndroidWheelView
   更加随意组合的滚轮控件
-## Download from Gradle
+## 通过Gradle下载依赖包
 
 ```groovy
 
 dependencies {
     compile 'com.github.dusunboy:androidwheelview-library:1.0.1'
+    compile "com.google.code.gson:gson:2.3.1"
 }
 
 ```
+## 使用
+---
+  1.实例化
+```java
+    WheelViewDialog wheelViewDialog = new WheelViewDialog(MainActivity.this, WheelViewDialog.DATE);
+```
+  2.可选模式
+>```
+  日期 DATE
+  日期加时间 DATE_TIME
+  省市区三级联动 PROVINCE_CITY_AREA
+  二级联动 TWO_LINKAGE
+  三级联动 THREE_LINKAGE
+  一级选择 ONE_LEVEL
+  二级选择 TWO_LEVEL
+  三级选择 THREE_LEVEL
+  四级选择 FOUR_LEVEL
+  五级选择 FIVE_LEVEL
+```
+3.填充数据
+
+
+## 更新日志
+* 1.0.2
+    增加时间选择
+    常用城市区三级联动
+    自定义二，三级联动
+    自定义一，二，三，四，五无联动选择
 
  感谢([ywl5320](http://blog.csdn.net/ywl5320/article/details/44730457))
 -------
