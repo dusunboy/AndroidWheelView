@@ -6,7 +6,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import androidwheelview.dusunboy.github.com.library.dialog.OnDateSetListener;
 import androidwheelview.dusunboy.github.com.library.dialog.OnTextSetListener;
@@ -84,13 +90,29 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        ArrayList<AreaBean> areaBeans = new ArrayList<AreaBean>();
+        try {
+            StringBuffer stringBuffer = new StringBuffer();
+            InputStream inputStream = getAssets().open("city.json");
+            int len = -1;
+            byte[] buf = new byte[1024];
+            while ((len = inputStream.read(buf)) != -1) {
+                stringBuffer.append(new String(buf, 0, len, "utf-8"));
+            }
+            inputStream.close();
+            areaBeans = new Gson().fromJson(stringBuffer.toString(), new TypeToken<List<AreaBean>>(){}.getType());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        final ArrayList<AreaBean> finalAreaBeans = areaBeans;
         tv_province_city_area.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 WheelViewDialog wheelViewDialog = new WheelViewDialog(
-                        MainActivity.this, WheelViewDialog.PROVINCE_CITY_AREA);
+                        MainActivity.this, WheelViewDialog.THREE_LINKAGE);
                 wheelViewDialog.setTitle("省市区三级联动");
+                wheelViewDialog.setData(finalAreaBeans);
                 wheelViewDialog.setPositiveButton("确认", new OnTextSetListener() {
                     @Override
                     public void onTextSet(WheelViewDialog wheelViewDialog, String text) {
@@ -105,9 +127,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-
-        final ArrayList<AreaBean> areaBeans = new ArrayList<AreaBean>();
-
+        final ArrayList<AreaBean> areaBeans2 = new ArrayList<AreaBean>();
         //---------------------二级联动---------------------------
         AreaBean areaBean1 = new AreaBean();
         ArrayList<AreaBean> areaBean1s = new ArrayList<AreaBean>();
@@ -121,7 +141,7 @@ public class MainActivity extends ActionBarActivity {
 
         areaBean1.setArea(areaBean1s);
         areaBean1.setName("酒");
-        areaBeans.add(areaBean1);
+        areaBeans2.add(areaBean1);
 
         //------------------------------------------------
         AreaBean areaBean2 = new AreaBean();
@@ -136,7 +156,7 @@ public class MainActivity extends ActionBarActivity {
 
         areaBean2.setArea(areaBean2s);
         areaBean2.setName("饮料");
-        areaBeans.add(areaBean2);
+        areaBeans2.add(areaBean2);
 
         tv_two_level_linkage.setOnClickListener(new View.OnClickListener() {
 
@@ -145,7 +165,7 @@ public class MainActivity extends ActionBarActivity {
                 WheelViewDialog wheelViewDialog = new WheelViewDialog(
                         MainActivity.this, WheelViewDialog.TWO_LINKAGE);
                 wheelViewDialog.setTitle("二级联动");
-                wheelViewDialog.setData(areaBeans);
+                wheelViewDialog.setData(areaBeans2);
                 wheelViewDialog.setPositiveButton("确认", new OnTextSetListener() {
                     @Override
                     public void onTextSet(WheelViewDialog wheelViewDialog, String text) {
@@ -206,7 +226,7 @@ public class MainActivity extends ActionBarActivity {
                 WheelViewDialog wheelViewDialog = new WheelViewDialog(
                         MainActivity.this, WheelViewDialog.THREE_LINKAGE);
                 wheelViewDialog.setTitle("三级联动");
-                wheelViewDialog.setData(areaBeans);
+                wheelViewDialog.setData(areaBeans2);
                 wheelViewDialog.setPositiveButton("确认", new OnTextSetListener() {
                     @Override
                     public void onTextSet(WheelViewDialog wheelViewDialog, String text) {

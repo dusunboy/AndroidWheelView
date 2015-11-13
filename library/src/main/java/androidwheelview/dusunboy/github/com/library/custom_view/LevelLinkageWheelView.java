@@ -5,11 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +58,7 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
         super(context);
         this.context = context;
         this.mode = mode;
-        if (mode == WheelViewDialog.PROVINCE_CITY_AREA || mode == WheelViewDialog.THREE_LINKAGE) {
+        if (mode == WheelViewDialog.THREE_LINKAGE) {
             level = 3;
         } else if (mode == WheelViewDialog.TWO_LINKAGE) {
             level = 2;
@@ -106,7 +101,7 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
         li.setLayoutParams(liLayoutParams);
 
 
-        if (mode == WheelViewDialog.PROVINCE_CITY_AREA || mode == WheelViewDialog.THREE_LINKAGE) {
+        if (mode == WheelViewDialog.THREE_LINKAGE) {
             LayoutParams wheelViewLayoutParams = new LayoutParams(DensityUtil.dp2px(context, (viewWidth) / 3),
                     LayoutParams.MATCH_PARENT);
             wv_first.setLayoutParams(wheelViewLayoutParams);
@@ -154,22 +149,6 @@ public class LevelLinkageWheelView extends LinearLayout implements OnWheelChange
         wv_fifth.addChangingListener(this);
         wv_fifth.addScrollingListener(this);
 
-        if (mode == WheelViewDialog.PROVINCE_CITY_AREA) {
-            try {
-                StringBuffer stringBuffer = new StringBuffer();
-                InputStream inputStream = context.getAssets().open("city.json");
-                int len = -1;
-                byte[] buf = new byte[1024];
-                while ((len = inputStream.read(buf)) != -1) {
-                    stringBuffer.append(new String(buf, 0, len, "utf-8"));
-                }
-                inputStream.close();
-                List<AreaBean> areaBeans = new Gson().fromJson(stringBuffer.toString(), new TypeToken<List<AreaBean>>(){}.getType());
-                setData(areaBeans);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     /**

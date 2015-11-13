@@ -33,10 +33,6 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
      */
     public static final int DATE_TIME = 1;
     /**
-     * 省市区三级联动模式
-     */
-    public static final int PROVINCE_CITY_AREA = 2;
-    /**
      * 二级联动
      */
     public static final int TWO_LINKAGE = 3;
@@ -119,9 +115,7 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
         if (mode == DATE || mode == DATE_TIME) {
             datePickerWheelView = new DatePickerWheelView(context, mode);
             datePickerWheelView.setDate(currentDate);
-        } else if(mode == PROVINCE_CITY_AREA ) {
-            levelLinkageWheelView = new LevelLinkageWheelView(context, mode);
-        }  else if(mode == TWO_LINKAGE || mode == THREE_LINKAGE) {
+        } else if(mode == TWO_LINKAGE || mode == THREE_LINKAGE) {
             levelLinkageWheelView = new LevelLinkageWheelView(context, mode);
             levelLinkageWheelView.setData(areaBeans);
         } else if(mode == ONE_LEVEL || mode == TWO_LEVEL
@@ -167,8 +161,7 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
 
         if (mode == DATE || mode == DATE_TIME) {
             li_wheel_view.addView(datePickerWheelView);
-        } else if(mode == PROVINCE_CITY_AREA || mode == TWO_LINKAGE
-                || mode == THREE_LINKAGE) {
+        } else if(mode == TWO_LINKAGE || mode == THREE_LINKAGE) {
             li_wheel_view.addView(levelLinkageWheelView);
         }  else if(mode == ONE_LEVEL || mode == TWO_LEVEL
                 || mode == THREE_LEVEL || mode == FOUR_LEVEL
@@ -196,8 +189,7 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
                     onPositiveButtonClickListener.onDateSet(this, datePickerWheelView.getCurrentYear(),
                             datePickerWheelView.getCurrentMonth() + 1, datePickerWheelView.getCurrentDay(),
                             datePickerWheelView.getCurrentHour(), datePickerWheelView.getCurrentMinutes());
-                } else if(mode == PROVINCE_CITY_AREA || mode == TWO_LINKAGE
-                        || mode == THREE_LINKAGE) {
+                } else if(mode == TWO_LINKAGE || mode == THREE_LINKAGE) {
                     OnTextSetListener onPositiveButtonClickListener = (OnTextSetListener) this.onPositiveButtonClickListener;
                     onPositiveButtonClickListener.onTextSet(this, levelLinkageWheelView.getCurrentTextStr());
                 } else if(mode == ONE_LEVEL || mode == TWO_LEVEL
@@ -216,8 +208,7 @@ public class WheelViewDialog extends Dialog implements View.OnClickListener {
                     onNegativeButtonClickListener.onDateSet(this, datePickerWheelView.getCurrentYear(),
                             datePickerWheelView.getCurrentMonth() + 1, datePickerWheelView.getCurrentDay(),
                             datePickerWheelView.getCurrentHour(), datePickerWheelView.getCurrentMinutes());
-                } else if(mode == PROVINCE_CITY_AREA || mode == TWO_LINKAGE
-                        || mode == THREE_LINKAGE) {
+                } else if(mode == TWO_LINKAGE || mode == THREE_LINKAGE) {
                     OnTextSetListener onNegativeButtonClickListener = (OnTextSetListener) this.onNegativeButtonClickListener;
                     onNegativeButtonClickListener.onTextSet(this, levelLinkageWheelView.getCurrentTextStr());
                 } else if(mode == ONE_LEVEL || mode == TWO_LEVEL
