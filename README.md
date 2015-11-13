@@ -1,7 +1,10 @@
 # AndroidWheelView
   更加随意组合的滚轮选择控件
+  
+## 演示
+  ![demo](https://github.com/dusunboy/AndroidWheelView/blob/master/images/demo.gif?raw=true)
+  
 ## 通过Gradle下载依赖包
-
 ```groovy
 
 dependencies {
@@ -99,11 +102,11 @@ dependencies {
 ```
 
 ## 更新日志
-* 1.0.3
+* 1.0.3<br>
     移动library里省市区的数据到app里<br>
     README.md添加使用说明
 
-* 1.0.2
+* 1.0.2<br>
     增加时间日期选择<br>
     常用城市区三级联动<br>
     自定义二，三级联动<br>
